@@ -1,0 +1,19 @@
+[Usuária] --(1. Pressiona Botão)--> [App Mobile (Kotlin)]
+   |
+   +--(2. Grava Áudio & Pega Localização)--> [App Mobile]
+   |
+   +--(3. Envia Alerta Inicial)--> [Backend API (Java)] --(4. Cria Alert no DB)--> [Banco de Dados (RDS)]
+   |
+   +--(5. Faz Upload do Áudio)--> [Backend API (Java)]
+                                     |
+                                     +--(6. Salva Áudio)--> [AWS S3]
+                                     |
+                                     +--(7. Dispara Processo Async)--> [Lógica Async do Backend]
+                                                                          |
+                                                                          +--(8. Inicia Transcrição)--> [AWS Transcribe]
+                                                                          |
+                                                                          +--(9. Recebe Texto Transcrito)--> [Lógica Async]
+                                                                          |
+                                                                          +--(10. Monta Mensagem)--> [Lógica Async]
+                                                                          |
+                                                                          +--(11. Envia SMS)--> [Twilio API] --> [Rede de Apoio]
